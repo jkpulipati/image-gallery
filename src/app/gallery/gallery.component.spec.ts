@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { GalleryComponent } from './gallery.component';
-import { SharedService } from '../shared.service';
+import { SharedService } from '../shared/services/shared.service';
 import { API_CONFIG, API_CONFIG_TOKEN } from '../shared/config/api.config';
 import { imageInfoModel } from '../shared/config/models';
 import { of, throwError } from 'rxjs';

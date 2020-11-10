@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { SharedService } from '../shared.service';
+import { SharedService } from '../shared/services/shared.service';
 
 import { imageInfoModel } from '../shared/config/models';
 

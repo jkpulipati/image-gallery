@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { SharedService } from '../shared.service';
+import { SharedService } from '../shared/services/shared.service';
 
 @Component({
   selector: 'app-image',

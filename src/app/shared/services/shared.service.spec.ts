@@ -2,7 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { SharedService } from './shared.service';
-import { API_CONFIG, API_CONFIG_TOKEN } from './shared/config/api.config';
+import { API_CONFIG, API_CONFIG_TOKEN } from '../config/api.config';
 
 describe('SharedService', () => {
   let service: SharedService;
