@@ -15,8 +15,8 @@ const routes: Routes = [
     component: GalleryComponent
   },
   {
-    path: '', 
-    redirectTo: '/dashboard', 
+    path: '',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {

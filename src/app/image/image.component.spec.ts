@@ -25,7 +25,7 @@ describe('ImageComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageComponent);
-    SharedServiceMock = TestBed.get(SharedService);
+    SharedServiceMock = TestBed.inject(SharedService);
     spyOn(SharedServiceMock, 'getRandomImage').and.returnValue(throwError('test'));
     component = fixture.componentInstance;
     fixture.detectChanges();

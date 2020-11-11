@@ -5,7 +5,7 @@ export const API_CONFIG = {
     GALLERY: '/v2/list',
     GALLERY_PAGE_COUNT: '?page=',
     GALLERY_LIMIT_COUNT: '&limit='
-}
+};
 
 
 export const API_CONFIG_TOKEN = new InjectionToken<typeof API_CONFIG>('api.config');

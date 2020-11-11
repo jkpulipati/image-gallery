@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { GalleryComponent } from './gallery.component';
 import { SharedService } from '../shared/services/shared.service';
 import { API_CONFIG, API_CONFIG_TOKEN } from '../shared/config/api.config';
-import { imageInfoModel } from '../shared/config/models';
+import { ImageInfoModel } from '../shared/config/models';
 import { of, throwError } from 'rxjs';
 import { global } from '@angular/compiler/src/util';
 import { computeMsgId } from '@angular/compiler';
@@ -13,17 +13,21 @@ describe('GalleryComponent', () => {
   let fixture: ComponentFixture<GalleryComponent>;
   let SharedServiceMock: SharedService;
   const URL = {
-    createObjectURL: function() { return "something" }
-}
-  const imageInfo: imageInfoModel = {
-    download_url: "https://picsum.photos/id/0/5616/3744",
+    createObjectURL: () => 'something'
+  };
+  const imageInfo: ImageInfoModel = {
+    download_url: 'https://picsum.photos/id/0/5616/3744',
     author: 'Alejandro Escamilla',
     url: 'https://unsplash.com/photos/yC-Yzbqy7PY',
     id: 12,
     width: 100,
     height: 200
   };
-  const imagesList = [imageInfo, {...imageInfo, id: 2}, {...imageInfo, id: 13}, {...imageInfo, id: 14}, {...imageInfo, id: 15}, {...imageInfo, id: 16}]
+  const imagesList = [imageInfo,
+    {...imageInfo, id: 2},
+    {...imageInfo, id: 13}, {...imageInfo, id: 14},
+    {...imageInfo, id: 15}, {...imageInfo, id: 16}
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -39,7 +43,7 @@ describe('GalleryComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GalleryComponent);
-    SharedServiceMock = TestBed.get(SharedService);
+    SharedServiceMock = TestBed.inject(SharedService);
     spyOn(SharedServiceMock, 'getGalleryImages').and.returnValue(of(imagesList));
     component = fixture.componentInstance;
     fixture.detectChanges();

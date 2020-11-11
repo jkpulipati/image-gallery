@@ -1,8 +1,8 @@
-export interface imageInfoModel {
-    id: number,
-    author: string,
-    width: number,
-    height: number,
-    url: string,
-    download_url: string
+export interface ImageInfoModel {
+    id: number;
+    author: string;
+    width: number;
+    height: number;
+    url: string;
+    download_url: string;
 }

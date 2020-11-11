@@ -18,10 +18,13 @@ export class ImageComponent implements OnInit {
     this.getRandomImage();
   }
 
-  getRandomImage() {
+  /**
+   *  This method is used for to get the random Image
+   */
+  getRandomImage(): void {
     this.randomImageUrl$ = this.sharedService.getRandomImage().pipe(
       catchError(err => of(err))
-    )
+    );
   }
 
 }

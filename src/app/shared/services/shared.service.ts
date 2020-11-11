@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.prod';
 import { API_CONFIG_TOKEN, API_CONFIG } from '../config/api.config';
+import { ImageInfoModel } from '../config/models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,7 @@ export class SharedService {
     const url = `${this.baseUrl}${this.apiConfig.RANDOM_IMAGE}`;
     return this.http.get<any>(url);
   }
-  
-  getGalleryImages(pageNumber: number, imagesPerPage: number) {
+  getGalleryImages(pageNumber: number, imagesPerPage: number): Observable<ImageInfoModel[]> {
     const url = `${this.baseUrl}${this.apiConfig.GALLERY}${this.apiConfig.GALLERY_PAGE_COUNT}${pageNumber}${this.apiConfig.GALLERY_LIMIT_COUNT}${imagesPerPage}`;
     return this.http.get<any>(url);
   }

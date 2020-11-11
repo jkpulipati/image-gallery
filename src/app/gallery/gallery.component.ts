@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SharedService } from '../shared/services/shared.service';
 
-import { imageInfoModel } from '../shared/config/models';
+import { ImageInfoModel } from '../shared/config/models';
 
 @Component({
   selector: 'app-gallery',
@@ -12,28 +12,21 @@ import { imageInfoModel } from '../shared/config/models';
 })
 export class GalleryComponent implements OnInit {
   images$: Observable<any>;
-  imagesPerPage: number = 6;
-  pageNumber: number = 1;
-  disableNextButton: boolean = false;
+  imagesPerPage = 6;
+  pageNumber = 1;
+  disableNextButton = false;
 
   constructor(private sharedService: SharedService) { }
-  
   /**
-   * @returns void
-   * 
    * It's a lifecycle hook, will trigger on load of component
    */
   ngOnInit(): void {
     this.getGalleryImages();
   }
-  
   /**
-   * @param  {number=1} pageNumber
-   * @param  {number=6} imagesPerPage
-   * 
-   * This method is used to trigger a service call by taking 2 parms as input   * 
+   * This method is used to trigger a service call by taking 2 parms as input
    */
-  getGalleryImages(pageNumber: number = 1, imagesPerPage: number = 6) {
+  getGalleryImages(pageNumber: number = 1, imagesPerPage: number = 6): void {
     this.images$ = this.sharedService.getGalleryImages(pageNumber, imagesPerPage).pipe(
       map(res => {
         if (res && res.length) {
@@ -44,62 +37,51 @@ export class GalleryComponent implements OnInit {
       catchError(err => of([]))
     );
   }
-  
   /**
-   * @param  {} event
-   * @param  {imageInfoModel} image
-   * 
    * This method is doing two steps
-   *      Conveting from Image to Blob
-   *      Downloading the image by taking the input as Blob (which is the 
-   *             first step action result)
+   * Conveting from Image to Blob
+   * Downloading the image by taking the input as Blob (which is the
+   * first step action result)
    */
-  downloadImage(event, image: imageInfoModel) {
+  downloadImage(event, image: ImageInfoModel): void {
     event.preventDefault();
-    let link = document.createElement("a");
+    const link = document.createElement('a');
 
     fetch(image.download_url)
-      .then(function (response) {
+      .then((response) => {
          return response.blob();
       })
-      .then(function (blob) {
+      .then((blob) => {
         link.href = URL.createObjectURL(blob);
-        link.download = "";
+        link.download = '';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
       });
   }
-  
   /**
    * changeImagesPerPage
-   * 
    * This method will fetch the images upon chnage in number of images per page
    */
-  changeImagesPerPage() {
+  changeImagesPerPage(): void {
     this.getGalleryImages(this.pageNumber, this.imagesPerPage);
   }
-
   /**
    * loadNextImages
-   * 
    * This method will be used for to load next images from server
    */
-  loadNextImages() {
+  loadNextImages(): void {
     this.pageNumber++;
     this.getGalleryImages(this.pageNumber, this.imagesPerPage);
   }
-
   /**
    * loadPreviousImages
-   * 
    * This method will be used for to load previous images from server
    */
-  loadPreviousImages() {
+  loadPreviousImages(): void {
     this.pageNumber--;
     if (this.pageNumber >= 1) {
       this.getGalleryImages(this.pageNumber, this.imagesPerPage);
     }
   }
-
 }
