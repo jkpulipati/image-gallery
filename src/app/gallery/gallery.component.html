@@ -1,27 +1,24 @@
 <section class="col-md-12 gallery-actions">
-    <span>per page:</span>
-    <select (change)="changeImagesPerPage()" class="form-control col-md-3 col-3
-        d-inline-block" [(ngModel)]="imagesPerPage">
-        <option value="6">6</option>
-        <option value="8">8</option>
-        <option value="10">10</option>
-        <option value="12">12</option>
-    </select>
-    <div class="d-inline-block float-right">
-        <button class="btn btn-primary mr-1" [disabled]="(pageNumber === 1)"
-            (click)="loadPreviousImages()">Previous</button>
-        <button class="btn btn-primary" [disabled]="disableNextButton"
-            (click)="loadNextImages()">Next</button>
-    </div>
+  <span>per page:</span>
+  <select (change)="changeImagesPerPage()" class="form-control col-md-3 col-3
+    d-inline-block" [(ngModel)]="imagesPerPage">
+    <option [value]="num" *ngFor="let num of pageNumbers">{{num}}</option>
+  </select>
+  <div class="d-inline-block float-right">
+    <button class="btn btn-primary mr-1" [disabled]="(pageNumber === 1)"
+      (click)="loadPreviousImages()">Previous</button>
+    <button class="btn btn-primary" [disabled]="disableNextButton"
+      (click)="loadNextImages()">Next</button>
+  </div>
 </section>
 <div class="col-md-12 row">
-    <div class="col-md-4" *ngFor="let image of images$ | async">
-        <div class="card mb-4 shadow-sm">
-            <img width="100%" height="225" (click)="downloadImage($event,
-                image)" [src]="image.download_url" alt="Image not aloaded">
-            <div class="card-body">
-                <p class="card-text"><a [href]="image.url" target="_blank">{{image.author}}</a></p>
-            </div>
-        </div>
+  <div class="col-md-4" *ngFor="let image of images$ | async">
+    <div class="card mb-4 shadow-sm">
+      <img width="100%" height="225" (click)="downloadImage($event,
+        image)" [src]="image.download_url" alt="Image not aloaded">
+      <div class="card-body">
+        <p class="card-text"><a [href]="image.url" target="_blank">{{image.author}}</a></p>
+      </div>
     </div>
+  </div>
 </div>

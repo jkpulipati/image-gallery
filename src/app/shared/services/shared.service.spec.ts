@@ -3,10 +3,18 @@ import { TestBed } from '@angular/core/testing';
 
 import { SharedService } from './shared.service';
 import { API_CONFIG, API_CONFIG_TOKEN } from '../config/api.config';
+import { ImageInfoModel } from '../config/models';
 
 describe('SharedService', () => {
   let service: SharedService;
-
+  const imageInfo: ImageInfoModel = {
+    download_url: 'https://picsum.photos/id/0/5616/3744',
+    author: 'Alejandro Escamilla',
+    url: 'https://unsplash.com/photos/yC-Yzbqy7PY',
+    id: 12,
+    width: 100,
+    height: 200
+  };
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -28,6 +36,11 @@ describe('SharedService', () => {
 
   it('should call getRandomImage', () => {
     service.getRandomImage();
+    expect(service).toBeTruthy();
+  });
+
+  it('should call downloadImage', () => {
+    service.downloadImage(imageInfo.download_url);
     expect(service).toBeTruthy();
   });
 });

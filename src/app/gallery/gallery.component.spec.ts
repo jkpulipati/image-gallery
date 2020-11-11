@@ -59,7 +59,7 @@ describe('GalleryComponent', () => {
       spyOn(global, 'fetch').and.returnValue(Promise.resolve({
         blob: () => Promise.resolve({})
       }));
-      component.downloadImage(new Event('test'), imageInfo);
+      component.downloadImage(imageInfo);
     });
   });
 

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SharedService } from '../shared/services/shared.service';
@@ -15,12 +15,14 @@ export class GalleryComponent implements OnInit {
   imagesPerPage = 6;
   pageNumber = 1;
   disableNextButton = false;
+  pageNumbers: Array<number> = [];
 
   constructor(private sharedService: SharedService) { }
   /**
    * It's a lifecycle hook, will trigger on load of component
    */
   ngOnInit(): void {
+    this.pageNumbers = this.sharedService.getPageNumbers();
     this.getGalleryImages();
   }
   /**
@@ -43,21 +45,8 @@ export class GalleryComponent implements OnInit {
    * Downloading the image by taking the input as Blob (which is the
    * first step action result)
    */
-  downloadImage(event, image: ImageInfoModel): void {
-    event.preventDefault();
-    const link = document.createElement('a');
-
-    fetch(image.download_url)
-      .then((response) => {
-         return response.blob();
-      })
-      .then((blob) => {
-        link.href = URL.createObjectURL(blob);
-        link.download = '';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
+  downloadImage(image: ImageInfoModel): void {
+    this.sharedService.downloadImage(image.download_url);
   }
   /**
    * changeImagesPerPage
