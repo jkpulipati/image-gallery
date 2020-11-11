@@ -1,8 +1,12 @@
-.gallery-actions {
-    margin: 5px;
-}
-
 .img-card {
     width: 100%;
     height: 225px;
+    cursor: pointer;
+}
+
+.form-control {
+    width: 21% !important;
+}
+.ml-15 {
+    margin-left: 1px;
 }

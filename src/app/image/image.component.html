@@ -1,7 +1,8 @@
-<div class="row col-md-12">
+<div class="row col-md-12 mt-4">
 	<div class="col-md-6">
-		<div class="card mb-4 shadow-sm" *ngIf="randomImageUrl$ | async as imageInfo">
-			<img class="img-card" [src]="imageInfo.url" alt="Image not aloaded">
+		<div *ngIf="randomImageUrl$ | async as imageInfo">
+			<img class="img-card img-fluid" [src]="imageInfo.url" alt="Image not
+				aloaded">
 		</div>
 	</div>
 	<div class="col-md-4 jumbotron text-center">
