@@ -1,15 +1,17 @@
 <div class="row col-md-12">
 	<div class="col-md-6">
 		<div class="card mb-4 shadow-sm" *ngIf="randomImageUrl$ | async as imageInfo">
-			<img width="100%" height="500" [src]="imageInfo.url" alt="Image not aloaded">
+			<img class="img-card" [src]="imageInfo.url" alt="Image not aloaded">
 		</div>
 	</div>
 	<div class="col-md-4 jumbotron text-center">
-		<button class="btn btn-primary my-2" (click)="getRandomImage()">Change Image</button>
+		<button class="btn btn-primary my-2" (click)="getRandomImage()">Change
+			Image</button>
 		<p>
 			The Lorem Ipsum for photos.</p>
 		<p>Easy to use, stylish placeholders</p>
-		<p>Just add your desired image size (width & height) after our URL, and you'll
+		<p>Just add your desired image size (width & height) after our URL, and
+			you'll
 			get a random image.
 		</p>
 		<p>
